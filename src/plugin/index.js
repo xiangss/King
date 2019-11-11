@@ -1,5 +1,6 @@
 import { Icon } from 'vant'
 import AppScroll from '../components/app-scroll'
+import applicationitem from '../components/application-item'
 
 export default {
   install(Vue){
@@ -7,5 +8,6 @@ export default {
     Vue.use(Icon);
     // 使用自定义的滚动组件
     Vue.component(AppScroll.name, AppScroll);
+    Vue.component(applicationitem.name,applicationitem)
   }
 }
