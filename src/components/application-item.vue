@@ -2,21 +2,21 @@
   <div class="application-item border-bottom">
     <div class="head">
         <span class="kuai"></span>
-        <span class="title">小赢卡贷</span>
-        <span class="count">9.1万<em>人申请</em></span>
+        <span class="title">{{data.productName}}</span>
+        <span class="count">{{data.numOfApplications}}<em>申请</em></span>
     </div>
     <div class="center">
         <div class="left">
-            <p>14000</p>
+            <p>{{data.equMoney}}</p>
             <span>平均放宽金额</span>
         </div>
         <div class="centers">
-            <span class="rate"><em>综合年利率:</em><span>35.99%</span></span>
-            <span class="data"><em>借款期限:</em><span>3 - 12月</span></span>
+            <span class="rate"><em>综合年利率:</em><span>{{data.annRate}}</span></span>
+            <span class="data"><em>借款期限:</em><span>{{data.timeLimit}}</span></span>
         </div>
         <div class="right">
             <div class="box">
-                <span class="btn">申请</span>
+                <span class="btn" @click="goDetailAction(data.cId)" >申请</span>
             </div>
         </div>
     </div>
@@ -26,6 +26,18 @@
 <script>
 export default {
     name:'application-item',
+    props:{
+        data:Object
+    },
+    methods:{
+        goDetailAction(id){
+            this.$router.push(`/borrow/application/${id}`)
+        }
+    },
+    created(){
+        console.log(this.data);
+        
+    }
 
 }
 </script>
@@ -122,7 +134,7 @@ export default {
                 }
                 span{
                     display: inline-block;
-                    width: 100px;
+                    width: 107px;
                 }
             }
         }
