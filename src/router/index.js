@@ -6,6 +6,9 @@ import creditRoutes from './credit-routes'
 import mineRoutes from './mine-routes'
 Vue.use(VueRouter)
 
+
+
+
 const routes = [
   {
     path: '/',
@@ -17,7 +20,15 @@ const routes = [
   mineRoutes,
   {
     path: '/login',
-    component: ()=>import('../pages/mine/children/login/login')
+    components: {
+      login : ()=>import('../pages/mine/children/login/login')
+    }
+  },
+  {
+    path: '/resetPassword',
+    components: {
+      login : ()=>import('../pages/mine/children/login/resetPassword')
+    }
   },
   {
     path: '/regiester',
