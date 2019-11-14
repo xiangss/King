@@ -48,6 +48,7 @@ export default {
     }
     if(!(localStorage.getItem('show'))){
       this.show = true;
+      localStorage.setItem('show',true);
     }else{
       this.show = false;
     }

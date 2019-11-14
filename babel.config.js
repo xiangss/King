@@ -7,6 +7,10 @@ module.exports = {
       libraryName: 'vant',
       libraryDirectory: 'es',
       style: true
-    }, 'vant']
+    }, 'vant'],
+    ['import', {
+      libraryName: "view-design",
+      libraryDirectory: "src/components"
+    },'view-design']
   ]
 }
