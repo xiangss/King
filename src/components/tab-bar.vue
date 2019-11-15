@@ -37,6 +37,7 @@ export default {
     width: 100%;
     height: 98px;
     overflow: hidden;
+    background: #ffffff;
     .tab-item{
         display: flex;
         flex-direction: column;

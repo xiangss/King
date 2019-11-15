@@ -4,7 +4,8 @@ export default {
   children:[
     {
       name:'application',
-      path:'application',
+      path:'application/:id',
+      props:true,
       component:()=>import('../pages/common/application/application')
     }
   ]

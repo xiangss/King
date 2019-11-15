@@ -65,6 +65,25 @@ export default {
   .van-toast__text{
     font-size: 28px;
   }
+.van-tabs--line .van-tabs__wrap{
+    height: 80px ;
+}
+.van-tab{
+  height: 80px;
+  line-height: 80px !important;
+}
+.van-ellipsis{
+  font-size: 30px;
+  height: 80px ;
+}
+.van-tabs__nav .van-tabs__nav--line{
+    height: 80px;
+}
+.van-tabs__wrap .van-hairline--top-bottom{
+    height: 80px;
+}
+.van-tabs--line .van-tabs__wrap{
+    height: 80px !important;
 }
 </style>
 

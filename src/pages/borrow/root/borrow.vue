@@ -25,16 +25,18 @@
 
       <!-- 申请列表 -->
       <app-scroll class="content scroll">
-        <application-item></application-item>
-        <!-- <application-item></application-item>
-        <application-item></application-item>
-        <application-item></application-item>
-        <application-item></application-item> -->
+        <application-item v-for="item in company.data" :key="item.id" :data="item"></application-item>
       </app-scroll>
+
+      <!-- application页面 -->
+      <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+          <router-view></router-view>
+      </transition>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
     data(){
         return{
@@ -42,17 +44,19 @@ export default {
         }
     },
     methods:{
-        request(){
-            this.$store.dispatch('product/requestAllCompany')
-            this.$nextTick(()=>{
-                this.company = this.$store.state.product.currentAllCompany
-                console.log(this.company);
-            })
+        async request(){
+            this.company =await this.$store.dispatch('product/requestAllCompany')
+            console.log(this.company);
+            
+            // this.$nextTick(()=>{
+            //     this.company = this.$store.state.product.currentAllCompany
+            //     console.log(this.company);
+            // })
         }
     },
     created(){
         this.request();
-    }
+    },
 }
 </script>
 

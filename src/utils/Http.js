@@ -1,6 +1,7 @@
 // 提供ajax请求，对axios进行二次封装
 import axios from 'axios'
 import {HOST} from './api'
+import { log } from 'util';
 
 export default class Http{
 
@@ -12,7 +13,8 @@ export default class Http{
             params:method === 'GET' ? data : null,
             data: method === 'POST' ? data : null
         });
-
+        // console.log(response);
+                
         return this.isSuccess(response);
     }
 
