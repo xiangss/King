@@ -68,6 +68,7 @@ export default {
   .van-toast__text {
     font-size: 28px;
   }
+}  
   .van-tabs--line .van-tabs__wrap {
     height: 80px;
   }
@@ -88,7 +89,7 @@ export default {
   .van-tabs--line .van-tabs__wrap {
     height: 80px !important;
   }
-}
+
 @keyframes slideInRight {
   0% {
     transform: translate3d(100%, 0, 0);
