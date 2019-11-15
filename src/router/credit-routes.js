@@ -12,19 +12,29 @@ export default {
         {
           name:'identification',
           path:'identification',
-          component:()=>import('../pages/credit/components/identification')
+          component:()=>import('../pages/credit/children/edituserInfo/children/identification')
         },
         {
           name:'infomation',
           path:'infomation',
-          component:()=>import('../pages/credit/components/infomation')
+          component:()=>import('../pages/credit/children/edituserInfo/children/infomation')
         },
         {
           name:'firendsinfon',
           path:'firendsinfon',
-          component:()=>import('../pages/credit/components/firendsinfon')
+          component:()=>import('../pages/credit/children/edituserInfo/children/firendsinfon')
+        },
+        {
+          name:'saveuserinfo',
+          path:'userInfo',
+          component:()=>import('../pages/credit/children/edituserInfo/children/saveuserinfo')
         }
        ]
-     }
+     },
+     {
+      name:'userInfo',
+      path:'userInfo',
+      component:()=>import('../pages/credit/children/userinfo/userinfo')
+    }
     ]
   }

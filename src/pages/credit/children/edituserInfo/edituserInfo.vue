@@ -1,5 +1,5 @@
 <template>
-<div id="userinfo">
+<div id="edituserinfo">
   <div class="ttop">
     <van-icon @click="btnbackAction" class="btnback" name="arrow-left" />
     <p class="title">填写资料</p>
@@ -10,9 +10,6 @@
     </van-steps>
   </div>
   <app-scroll class="content">
-    <!-- <Idcard v-if="active== -1" @sendId="handlegetNumber"></Idcard>
-    <InfoMation v-if="active == 0"  @sendjob="handlegetInfomation"></InfoMation>
-    <FirendsInfon v-if="active == 1" @sendfirends="handlegetFirends"></FirendsInfon> -->
     <router-view></router-view>
   </app-scroll>
 </div>
@@ -20,14 +17,8 @@
 
 <script>
 import { Step, Steps } from 'vant'
-import Idcard from '../../components/identification'
-import InfoMation from '../../components/infomation'
-import FirendsInfon from '../../components/firendsinfon'
 export default {
   components:{
-    Idcard,
-    InfoMation,
-    FirendsInfon,
     [Step.name]:Step,
     [Steps.name]:Steps
   },
@@ -61,7 +52,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#userinfo{
+#edituserinfo{
   width: 100%;
   height: 100%;
   position: absolute;

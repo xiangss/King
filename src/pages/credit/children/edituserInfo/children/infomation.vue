@@ -1,19 +1,19 @@
 <template>
 <div id="infomation">
   <div class="ttop" >
-    <p @click="xueliAction">学历<span :class="{tactive : xueli =='',tactived: xueli != ''}">{{(xueli || $store.state.credit.jobinfo.edu) ? (xueli || $store.state.credit.jobinfo.edu) : '请输入'}}</span></p>
-    <p @click="jobAction">职业信息<span :class="{tactive : job =='',tactived: job != ''}">{{(job || $store.state.credit.jobinfo.job) ? (job || $store.state.credit.jobinfo.job) : '请输入'}}</span></p>
-    <p @click="salarAction">月均收入<span :class="{tactive : salar =='',tactived: salar != ''}">{{(salar || $store.state.credit.jobinfo.salary) ? (salar || $store.state.credit.jobinfo.salary) : '请输入'}}</span></p>
-    <p @click="moneyAction">期望借款金额<span :class="{tactive : money =='',tactived: money != ''}">{{(money || $store.state.credit.jobinfo.expectMoney) ? (money || $store.state.credit.jobinfo.expectMoney) : '请输入'}}</span></p>
+    <p @click="xueliAction">学历<span :class="{tactive : !xueli ,tactived: xueli}">{{xueli ? xueli : '请输入'}}</span></p>
+    <p @click="jobAction">职业信息<span :class="{tactive : !job ,tactived: job}">{{job ? job : '请输入'}}</span></p>
+    <p @click="salarAction">月均收入<span :class="{tactive : !salar,tactived: salar}">{{salar ? salar : '请输入'}}</span></p>
+    <p @click="moneyAction">期望借款金额<span :class="{tactive : !money ,tactived: money}">{{money ? money : '请输入'}}</span></p>
   </div>
   <div class="address">
     <p>居住地址</p>
-    <input :class="{tactived: address != ''}" type="text" :placeholder=" $store.state.credit.jobinfo.address || '请输入详细地址'" v-model="address">
+    <input :class="{tactived: address}" type="text" :placeholder=" address || '请输入详细地址'" v-model="address">
   </div>
   <div class="jobAddress">
-    <p @click="jobNameAction">单位名称<span :class="{tactive : jobName =='',tactived: jobName != ''}">{{(jobName || $store.state.credit.jobinfo.company) ? (jobName || $store.state.credit.jobinfo.company) : '请输入'}}</span></p>
+    <p @click="jobNameAction">单位名称<span :class="{tactive : !jobName,tactived: jobName}">{{jobName ? jobName : '请输入'}}</span></p>
     <p>工作地址</p>
-    <input :class="{tactived: workAddress != ''}" type="text" :placeholder="$store.state.credit.jobinfo.workAddress || '请输入详细地址'" v-model="workAddress">
+    <input :class="{tactived: workAddress}" type="text" :placeholder=" workAddress || '请输入详细地址'" v-model="workAddress">
   </div>
 
   <div>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { Uploader,Popup,Button  } from 'vant';
+import { Uploader,Popup,Button,Toast  } from 'vant';
 export default {
   components:{
     [Uploader.name]:Uploader,
@@ -80,13 +80,6 @@ export default {
   },
   methods:{
     nextAction(){
-      this.xueli = this.xueli || this.$store.state.credit.jobinfo.edu;
-      this.job = this.job || this.$store.state.credit.jobinfo.job;
-      this.salar = this.salar || this.$store.state.credit.jobinfo.salary;
-      this.money = this.money || this.$store.state.credit.jobinfo.expectMoney;
-      this.address = this.address || this.$store.state.credit.jobinfo.address;
-      this.jobName = this.jobName || this.$store.state.credit.jobinfo.company;
-      this.workAddress = this.workAddress || this.$store.state.credit.jobinfo.workAddress;
       if(this.xueli && this.job && this.salar && this.money  && this.address && this.workAddress && this.jobName){
         let jobinfo = {
           edu:this.xueli,
@@ -101,9 +94,9 @@ export default {
         // 跳转下一个，并存储数据到仓库
         this.$router.push({name:'firendsinfon'});
         this.$store.commit('credit/changeActive',1);
-        this.$store.commit('credit/changeJobinfo',jobinfo);
+        this.$store.commit('credit/changeSaveinfolist',jobinfo);
       }else{
-        alert('请输入完整！！！');
+        Toast('请输入完整！');
       }
     },
     xueliAction(){
@@ -121,6 +114,16 @@ export default {
     jobNameAction(){
       this.showjobname = !this.showjobname;
     }
+  },
+  //路由回退时保证界面还可以显示数据
+  created(){
+    this.xueli = this.$store.state.credit.saveinfolist.edu;
+    this.job = this.$store.state.credit.saveinfolist.job;
+    this.salar = this.$store.state.credit.saveinfolist.salary;
+    this.money = this.$store.state.credit.saveinfolist.expectMoney;
+    this.address = this.$store.state.credit.saveinfolist.address;
+    this.jobName = this.$store.state.credit.saveinfolist.company;
+    this.workAddress = this.$store.state.credit.saveinfolist.workAddress;
   }
   
 }
@@ -188,8 +191,6 @@ export default {
     height: 100%;
     height: 200px;
     border-radius: 20px;
-    position: fixed;
-    z-index: 999;
     input{
       width: 100%;
       height: 80px;

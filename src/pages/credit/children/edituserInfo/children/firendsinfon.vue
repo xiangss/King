@@ -1,9 +1,9 @@
 <template>
 <div id="firends">
   <div class="ttop" >
-    <p @click="fnameAction">姓名<span :class="{tactive : fname =='',tactived: fname != ''}">{{(fname || $store.state.credit.firendsinfo.fname) ? (fname || $store.state.credit.firendsinfo.fname) : '请输入'}}</span></p>
-    <p @click="ftelAction">电话<span :class="{tactive : ftel =='',tactived: ftel != ''}">{{(ftel || $store.state.credit.firendsinfo.ftel) ? (ftel || $store.state.credit.firendsinfo.ftel) : '请输入'}}</span></p>
-    <p @click="guanxiAction">关系<span :class="{tactive : guanxi =='',tactived: guanxi != ''}">{{(guanxi || $store.state.credit.firendsinfo.guanxi) ? (guanxi || $store.state.credit.firendsinfo.guanxi) : '请输入'}}</span></p>
+    <p @click="fnameAction">姓名<span :class="{tactive : !fname,tactived: fname}">{{fname ? fname : '请输入'}}</span></p>
+    <p @click="ftelAction">电话<span :class="{tactive : !ftel ,tactived: ftel}">{{ftel ? ftel : '请输入'}}</span></p>
+    <p @click="guanxiAction">关系<span :class="{tactive : !guanxi,tactived: guanxi}">{{guanxi ? guanxi : '请输入'}}</span></p>
   </div>
 
 
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { Uploader,Popup,Button  } from 'vant';
+import { Uploader,Popup,Button,Toast  } from 'vant';
 export default {
   components:{
     [Uploader.name]:Uploader,
@@ -53,20 +53,18 @@ export default {
   },
   methods:{
     nextAction(){
-      this.fname = this.fname || this.$store.state.credit.firendsinfo.fname;
-      this.ftel = this.ftel || this.$store.state.credit.firendsinfo.ftel;
-      this.guanxi = this.guanxi || this.$store.state.credit.firendsinfo.guanxi;
+     
       if(this.fname && this.ftel  && this.guanxi ){
         let firendsinfo = {
           fname:this.fname,
           ftel:this.ftel,
           guanxi:this.guanxi
         }
-        
+        this.$router.push({name:'saveuserinfo'});
         this.$store.commit('credit/changeActive',2);
-        this.$store.commit('credit/changeFirendsinfo',firendsinfo);
+        this.$store.commit('credit/changeSaveinfolist',firendsinfo);
       }else{
-        alert('请输入完整！！！');
+        Toast('请输入完整！');
       }
     },
     fnameAction(){
@@ -80,6 +78,11 @@ export default {
       this.guanxiflag = ! this.guanxiflag;
 
     }
+  },
+  created(){
+     this.fname = this.$store.state.credit.saveinfolist.fname;
+      this.ftel = this.$store.state.credit.saveinfolist.ftel;
+      this.guanxi = this.$store.state.credit.saveinfolist.guanxi;
   }
   
 }
@@ -121,7 +124,6 @@ export default {
     height: 100%;
     height: 200px;
     border-radius: 20px;
-    z-index: 999;
     input{
       width: 100%;
       height: 80px;

@@ -4,18 +4,19 @@
       <div class="face">
       <p>身份证人像正面</p>
       <span>+</span>
-      <img :src="face || $store.state.credit.idinfo.identityCardF" alt="">
+      <img :src="face" alt="">
       <van-uploader class="car" :after-read="afterReadface" />
     </div>
     <div class="noface">
       <p>身份证国徽面</p>
       <span>+</span>
-      <img :src="noface || $store.state.credit.idinfo.identityCardR" alt="">
+      <img :src="noface" alt="">
       <van-uploader class="car" :after-read="afterReadnoface" />
     </div>
     <div class="info">
-      <p @click="showName">姓名<span :class="{tactive : name =='' ,tactived: name != ''}">{{(name || $store.state.credit.idinfo.cname) ? (name || $store.state.credit.idinfo.cname) : '请输入'}}</span></p>
-      <p @click="showId">身份证号<span :class="{tactive : idinfo =='',tactived: idinfo != ''}">{{(idinfo || $store.state.credit.idinfo.identityCardNumber) ? (idinfo || $store.state.credit.idinfo.identityCardNumber) : '请输入'}}</span></p>
+      <!-- <p @click="showName">姓名<span :class="{tactive : name =='' ,tactived: name != ''}">{{(name || $store.state.credit.idinfo.cname) ? (name || $store.state.credit.idinfo.cname) : '请输入'}}</span></p> -->
+       <p @click="showName">姓名<span :class="{tactive : !name ,tactived: name }">{{name ? name : '请输入'}}</span></p>
+      <p @click="showId">身份证号<span :class="{tactive : !idinfo,tactived: idinfo}">{{idinfo ? idinfo : '请输入'}}</span></p>
     </div>
   </div>
 
@@ -38,12 +39,14 @@
 </template>
 
 <script>
-import { Uploader,Popup,Button  } from 'vant';
+import { Uploader,Popup,Button  } from 'vant'
+import { Toast } from 'vant'
 export default {
   components:{
     [Uploader.name]:Uploader,
     [Popup.name]:Popup,
-    [Button.name]:Button
+    [Button.name]:Button,
+    [Toast.name]:Toast
   },
   data(){
     return{
@@ -65,10 +68,10 @@ export default {
     nextAction(){
       let idinfo = {};
       //路由回退时保证界面还可以显示数据
-      this.face = this.face || this.$store.state.credit.idinfo.identityCardF;
-      this.noface = this.noface || this.$store.state.credit.idinfo.identityCardF;
-      this.name = this.name || this.$store.state.credit.idinfo.cname;
-      this.idinfo = this.idinfo || this.$store.state.credit.idinfo.identityCardNumber;
+      // this.face = this.face || this.$store.state.credit.idinfo.identityCardF;
+      // this.noface = this.noface || this.$store.state.credit.idinfo.identityCardF;
+      // this.name = this.name || this.$store.state.credit.idinfo.cname;
+      // this.idinfo = this.idinfo || this.$store.state.credit.idinfo.identityCardNumber;
       if(this.face && this.noface && this.name && this.idinfo ){
         idinfo.identityCardF = this.face;
         idinfo.identityCardR = this.noface ;
@@ -78,10 +81,10 @@ export default {
         // 跳转下一个，并存储数据到仓库
         this.$router.push({name:'infomation'});
         this.$store.commit('credit/changeActive',0);
-        this.$store.commit('credit/changeIdinfo',idinfo);
+        this.$store.commit('credit/changeSaveinfolist',idinfo);
 
       }else{
-        alert('请输入完整！！！');
+        Toast('请输入完整！');
       }
     },
     namebtn(){
@@ -96,6 +99,13 @@ export default {
     showId(){
       this.idflag = true;
     }
+  },
+  //路由回退时保证界面还可以显示数据
+  created(){
+      this.face = this.$store.state.credit.saveinfolist.identityCardF;
+      this.noface = this.$store.state.credit.saveinfolist.identityCardF;
+      this.name = this.$store.state.credit.saveinfolist.cname;
+      this.idinfo = this.$store.state.credit.saveinfolist.identityCardNumber;
   }
 }
 </script>

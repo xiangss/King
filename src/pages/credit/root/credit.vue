@@ -5,7 +5,7 @@
     <div class="ttop">
       <van-circle class="tcircle"
         v-model="currentRate"
-        :rate="rate"
+        :rate="nowRate"
         :speed="100"
         layer-color="#ccc"
         :stroke-width="70"
@@ -13,7 +13,7 @@
         :size="150"
       />
       <p class="ttext">
-        <span class="tfenshu">000</span>
+        <span class="tfenshu">{{$store.state.credit.mark}}</span>
         <span class="xinyongfen">信用分</span>
       </p>
       <div class="trak">
@@ -27,13 +27,17 @@
       <span class="ttitle">完善个人资料</span>
       <van-icon class="iconright" name="arrow" />
     </div>
-    <div class="seeuserinfo">
+    <div @click="seeAction" class="seeuserinfo">
       <span class="ttitle">查看个人资料</span>
       <van-icon class="iconright" name="arrow" />
     </div>
   </div>
    <p class="infomation">所填资料仅用于您的贷款申请</p>
   <router-view></router-view>
+  <div class="isLogin" v-if="show">
+    <p>信用</p>
+    <span @click="goLogin">去登录</span>
+  </div>
 </div>
 </template>
 
@@ -46,7 +50,8 @@ export default {
   data() {
     return {
       currentRate: 0,
-      rate:30,
+      rate:50,
+      show:false,
     };
   },
   computed:{
@@ -56,13 +61,34 @@ export default {
       var m = d.getMonth()+1;
       var day = d.getDate()
       return y+'-'+m+'-'+day
+    },
+    nowRate(){
+      return (this.$store.state.credit.mark)/1000*(this.rate)
     }
   },
   methods:{
     addAction(){
       this.$router.push({name:'edituserInfo'})
+    },
+    seeAction(){
+      this.$router.push({name:'userInfo'});
+    },
+    async getInfomation(){
+      await this.$store.dispatch('credit/requestInfomation');
+    },
+    goLogin(){
+      this.$router.push('/login')
     }
-  }
+  },
+  created(){
+    if(this.$store.state.isLogin == 0){
+      this.show = true;
+    }
+    else if(this.$store.state.isLogin == 1){
+      this.show = false;
+    }
+    this.getInfomation();
+  },
 
 }
 </script>
@@ -70,7 +96,35 @@ export default {
 #credit{
   width: 100%;
   height: 100%;
-
+  .isLogin{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 98px;
+    background-color: #F7F7F7;
+    z-index: 999;
+    background: url('../../../assets/pic_bg.png') no-repeat center;
+    background-size: cover;
+    p{
+      width: 100%;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      font-size: 36px;
+      color: #fff;
+    }
+    span{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 40px;
+      background-color: #FFB140;
+      padding: 20px 60px;
+      color: #fff;
+      border-radius: 20px;
+    }
+  }
   .tpage{
     position: absolute;
     top: 0;

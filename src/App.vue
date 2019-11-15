@@ -59,6 +59,13 @@ export default {
 .tactived{
   color: #F8984E;
 }
+.van-toast{
+  width: 200px;
+  height: 100px;
+  .van-toast__text{
+    font-size: 28px;
+  }
+}
 </style>
 
 
