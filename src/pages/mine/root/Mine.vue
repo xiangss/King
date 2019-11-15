@@ -88,6 +88,11 @@ export default {
       this.showInput=false;
       
     }
+  },
+  beforeCreate(){
+    this.$store.state.isLogin =this.$store.state.kevin.isLogin;
+    console.log(this.$store.state.isLogin );
+    
   }
 };
 </script>
