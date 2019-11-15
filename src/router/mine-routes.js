@@ -22,5 +22,24 @@ export default {
       path: 'repayment',
       component: ()=>import('../pages/mine/children/repayment/repayment'),
     },
+    {
+      name:'assess',
+      path:'assess',
+      component:()=>import('../pages/mine/children/assess/assess'),
+      children:[
+        {
+          name:'write',
+          path:'write',
+          component:()=>import('../pages/mine/children/write/write'),
+          children:[
+            {
+              name:'assessSuccess',
+              path:'assessSuccess',
+              component:()=>import('../pages/mine/children/assessSuccess/assessSuccess'),
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -6,8 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    userMoney:80000,
+    borrowMoney:false
   },
   mutations: {
+    setMoney(state,value){
+      state.userMoney = state.userMoney - value
+    }
   },
   actions: {
   },

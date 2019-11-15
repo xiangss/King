@@ -13,7 +13,7 @@ export default class Http{
             params:method === 'GET' ? data : null,
             data: method === 'POST' ? data : null
         });
-        console.log(response);
+        // console.log(response);
                 
         return this.isSuccess(response);
     }
