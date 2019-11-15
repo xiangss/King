@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import product from './product'
 import credit from './credit'
 
+import kevin from './kevin'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   },
   modules: {
     product,
-    credit
+    credit,
+    kevin
   }
 })

@@ -15,6 +15,8 @@ const REGIESTER_API = '/api/user/regiester'
 
 // 登录
 const lOGIN_API = '/api/user/login'
+//退出登陆
+const lOGOUT_API = '/api/user/logout'
 
 // 身份验证
 const IDENTITY_API = '/api/information/find'
@@ -61,5 +63,6 @@ export default{
     ORDER_LIST_API,
     DELETE_ORDER_API,
     HANDLE_ORDER_API,
-    ONLINE_API
+    ONLINE_API,
+    lOGOUT_API
 }
