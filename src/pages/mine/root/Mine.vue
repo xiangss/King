@@ -1,7 +1,20 @@
 <template>
   <div>
     <div class="page" id="mine">
+      <!-- 头像及用户名 -->
       <photo />
+      <!-- box1 -->
+      <cash />
+      <!-- box2 -->
+      <order />
+      <!-- box3 tool -->
+      <tools />
+      <!-- server help -->
+      <server-help />
+
+      <!-- 推介广告 -->
+
+      <advertise />
       <!-- <button @click="Action">dakai</button> -->
     </div>
     <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
@@ -9,13 +22,13 @@
     </transition>
 
     <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
-
+      <!-- 退出登陆 修改用户名 -->
     <van-popup position="bottom" round :style="{ height: '16%' }" v-model="show">
       <p class="bottom">分享</p>
       <p class="bottom" @click="changeNameAction">修改用户名</p>
       <p class="bottom" @click="logOutAction">退出登陆</p>
     </van-popup>
-
+      <!-- 修改用户名弹框 -->
     <van-popup round :style="{ height: '20%' ,width:'80%'}" v-model="showInput">
       
       <input class="inputBox" type="text" ref="username" placeholder="输入新的用户名">
@@ -28,16 +41,27 @@
 
 <script>
 import photo from "./children/photo";
+import order from "./children/order";
+import cash from "./children/cash";
+import tools from "./children/tools";
+import server from "./children/server";
+import advertise from "./children/advertise";
 import { Popup, Cell } from "vant";
 export default {
   data() {
     return {
       show: false,
       showInput:false,
+      
     };
   },
   components: {
     photo,
+    order,
+    cash,
+    tools,
+    advertise,
+    "server-help":server,
     "van-popup": Popup,
   },
   methods: {
@@ -50,6 +74,7 @@ export default {
     logOutAction() {
       this.$store.dispatch("kevin/logOutAction");
       this.show = false;
+      this.$store.state.kevin.img="";
     },
     changeNameAction() {
       this.showInput=true;
@@ -72,6 +97,7 @@ export default {
   background: #f7f7f7;
   box-sizing: border-box;
   padding: 30px;
+  // overflow: scroll;
 }
 
 .inputBox{

@@ -22,5 +22,10 @@ export default {
       path: 'repayment',
       component: ()=>import('../pages/mine/children/repayment/repayment'),
     },
+    {
+      name:'feedback',
+      path: 'feedback',
+      component: ()=>import('../pages/mine/children/feedback/feedback'),
+    },
   ]
 }
