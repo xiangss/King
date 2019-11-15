@@ -9,26 +9,26 @@
 </template>
 
 <script>
-import TabBar from './components/tab-bar'
+import TabBar from "./components/tab-bar";
 export default {
   components: {
     [TabBar.name]: TabBar
   }
-}
+};
 </script>
 
 <style lang="scss">
-#app{
+#app {
   width: 100%;
   height: 100%;
 }
-.page{
+.page {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 98px;
   width: 100%;
-  .content{
+  .content {
     position: absolute;
     top: 0px;
     left: 0;
@@ -37,53 +37,54 @@ export default {
   }
 }
 
-.t-step .van-step__circle-container{
+.t-step .van-step__circle-container {
   padding: 10px !important;
   border-radius: 50% !important;
 }
-.t-step .van-step__circle{
+.t-step .van-step__circle {
   width: 20px !important;
   height: 20px !important;
 }
-.van-step__title{
+.van-step__title {
   font-size: 30px !important;
   margin-top: 60px !important;
 }
-.car .van-uploader__upload{
+.car .van-uploader__upload {
   width: 300px !important;
   height: 200px !important;
 }
-.tactive{
+.tactive {
   color: #ccc;
 }
-.tactived{
-  color: #F8984E;
+.tactived {
+  color: #f8984e;
 }
-.van-toast{
+.van-toast {
   width: 200px;
   height: 100px;
-  .van-toast__text{
+  .van-toast__text {
     font-size: 28px;
   }
-.van-tabs--line .van-tabs__wrap{
-    height: 80px ;
-}
-.van-tab{
-  height: 80px;
-  line-height: 80px !important;
-}
-.van-ellipsis{
-  font-size: 30px;
-  height: 80px ;
-}
-.van-tabs__nav .van-tabs__nav--line{
+  .van-tabs--line .van-tabs__wrap {
     height: 80px;
-}
-.van-tabs__wrap .van-hairline--top-bottom{
+  }
+  .van-tab {
     height: 80px;
-}
-.van-tabs--line .van-tabs__wrap{
+    line-height: 80px !important;
+  }
+  .van-ellipsis {
+    font-size: 30px;
+    height: 80px;
+  }
+  .van-tabs__nav .van-tabs__nav--line {
+    height: 80px;
+  }
+  .van-tabs__wrap .van-hairline--top-bottom {
+    height: 80px;
+  }
+  .van-tabs--line .van-tabs__wrap {
     height: 80px !important;
+  }
 }
 </style>
 
