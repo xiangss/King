@@ -1,17 +1,17 @@
 <template>
-<div id="start">
-    <div class="start" v-if="stratFlag">
-    <img src="../../../assets/1-1.png" alt="">
+<div id="start" v-if="allshow">
+  <div class="start" v-if="stratFlag">
+    <img src="../../../../assets/1-1.png" alt="">
   </div>
   <van-swipe v-if="show" :loop="false" :show-indicators="false" class="content">
     <van-swipe-item>
-      <img src="../../../assets/1-2.png" alt="">
+      <img src="../../../../assets/1-2.png" alt="">
     </van-swipe-item>
     <van-swipe-item>
-      <img src="../../../assets/1-3.png" alt="">
+      <img src="../../../../assets/1-3.png" alt="">
     </van-swipe-item>
     <van-swipe-item>
-      <img src="../../../assets/1-4.png" alt="">
+      <img src="../../../../assets/1-4.png" alt="">
       <span @click="btnAction" class="btn"></span>
     </van-swipe-item>
   </van-swipe>
@@ -29,15 +29,23 @@ export default {
   data(){
     return{
       stratFlag:true,
-      show:true
+      show:true,
+      allshow:true,
     }
   },
   methods: {
     btnAction(){ 
       this.show = false;
+      this.allshow = false;
     }
   },
   mounted(){
+    if(!(sessionStorage.getItem('allshow'))){
+      this.allshow = true;
+      sessionStorage.setItem('allshow',true);
+    }else{
+      this.allshow = false;
+    }
     if(!(sessionStorage.getItem('startFlag'))){
       setTimeout(()=>{
         this.stratFlag = false;

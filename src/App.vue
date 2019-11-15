@@ -1,13 +1,14 @@
 <template>
-  <div>
+
     <div id="app">
+       <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+      <router-view name="login"></router-view>
+    </transition>
       <router-view></router-view>
       <tab-bar></tab-bar>
     </div>
-    <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
-      <router-view name="login"></router-view>
-    </transition>
-  </div>
+   
+
 </template>
 
 <script>

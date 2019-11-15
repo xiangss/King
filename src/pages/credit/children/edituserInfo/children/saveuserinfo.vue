@@ -13,7 +13,8 @@ import { Button ,Toast } from 'vant';
 export default {
   components:{
     Userinfomation,
-    [Button.name]:Button
+    [Button.name]:Button,
+    [Toast.name]:Toast
   },
   data(){
     return{

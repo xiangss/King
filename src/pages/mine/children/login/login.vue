@@ -148,6 +148,7 @@ export default {
         value: this.value
       });
       if (this.$store.state.kevin.code == 0) {
+        this.$store.commit('setisLogin',1);
         this.$store.state.kevin.isLogin = 1;
         this.$router.push("/mine");
       } else {

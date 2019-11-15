@@ -23,12 +23,13 @@
 
 <script>
 import Userinfomation from '../../components/userinfomation'
-import { Button ,Popup  } from 'vant';
+import { Button ,Popup,Toast  } from 'vant';
 export default {
   components:{
     Userinfomation,
     [Button.name]:Button,
-    [Popup .name]:Popup 
+    [Popup .name]:Popup,
+    [Toast.name]:Toast 
   },
   data(){
     return{
@@ -52,8 +53,16 @@ export default {
       this.show = false;
     },
     async yesbtnAction(){
+      this.show = false;
       await this.$store.dispatch('credit/deleteInfomation');
-
+      if(this.$store.state.credit.code == 0){
+        Toast('删除成功！');
+        setTimeout(()=>{
+          this.$router.push({name:'credit'});
+        },2000);
+      }else{
+        Toast('出现异常!');
+      }
     },
     async getInfomation(){
       await this.$store.dispatch('credit/requestInfomation');
