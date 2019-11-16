@@ -37,7 +37,7 @@ export default {
       this.$router.push("/home");
     },
     orderAction() {
-      this.$router.push("/home");
+      this.$router.push("/mine/order");
     },
     payAction() {
       this.$router.push("/credit");

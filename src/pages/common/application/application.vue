@@ -71,7 +71,7 @@
       <!-- 收藏、、申请 -->
       <div class="footer">
           <div class="left">
-              <img :src="picSrc" alt="" ref="pic" @click="collect(datas._id)">
+              <img :src="picSrc" alt="" ref="pic" @click="collect(datas.cId)">
               <span>收藏</span>
           </div>
           <div class="right">
@@ -124,42 +124,58 @@ export default {
         },
         // 点击收藏
         collect(cId){
-                Http.post(api.ADD_ORDER_API,{cId,status:3})
+            console.log(888);
+            
+                Http.post(api.ADD_ORDER_API,{cId,statues:3})
                 .then((result)=>{
-                    if(result.data.code === -1){
+                    console.log(result);
+                    
+                    if(result.data.code == -1){
                     Toast('请先登录');
-                }else if(result.data.code === 0){
+                }else if(result.data.code == 0){
+                    console.log(999);
+
                     Toast('收藏成功');
                     // 将申请成功获得产品信息存入仓库
-                    this.$store.commit('product/setProduct',result.data.data[0])
+                    // this.$store.commit('product/setProduct',result.data.data[0])
                     // 改变图片的样式
                     this.picFlag = !this.picFlag
+                    this.$store.dispatch('product/requestOrderList')
                 }
+                })
+                .catch((error)=>{
+                    Toast('收藏失败')
+                    console.log(error);
                 })
         },
         // 提交申请
         applicationAction(cId,status){
-            // 根据标识判断有没有在信用上面借钱，能不能申请
+            // 根据标识判断有没有登录
+            // const flag = this.$store.state.isLogin;
             const flag = true;
-
             if(!flag){
-                Toast('亲，先去信用中借钱哦');
+                Toast('亲，先去登录借钱哦');
                 return
             }
-            Http.post(api.ADD_ORDER_API,{cId,status:0})
+            Http.post(api.ADD_ORDER_API,{cId,statues:1})
             .then((result)=>{
-                if(result.data.code === -1){
+                console.log(result);
+                if(result.data.code == -1){
                     Toast('请先登录');
-                }else if(result.data.code === 0){
+                    console.log(1);
+                    
+                }else if(result.data.code == 0){
+                    console.log(2);
                     Toast('申请成功');
                     // 将收藏成功获得产品信息存入仓库
-                    this.$store.commit('product/setProduct',result.data.data[0])
+                    // this.$store.commit('product/setProduct',result.data.data[0])
+                    this.$store.dispatch('product/requestOrderList')
                 }
             })
             .catch((error)=>{
                 Toast('申请失败')
+                console.log(1);
                 console.log(error);
-                
             })
         }
 

@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLogin:0,
-    userMoney:80000,
+    userMoney:80000000,
     borrowMoney:true
   },
   mutations: {
@@ -18,6 +18,10 @@ export default new Vuex.Store({
     },
     setisLogin(state, value){
       state.isLogin = value;
+    },
+    // 评论成功增加20体验金
+    addMoney(state){
+      state.userMoney = state.userMoney + 20;
     }
   },
   actions: {

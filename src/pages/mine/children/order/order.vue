@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrap">
+  <div class="page-wrap page">
       <div class="header border-bottom">
           <div class="back" @click="back"><img src="../../../../assets/icon_fhs.png" alt=""></div>
           <div class="title">订单管理</div>
@@ -15,7 +15,7 @@
 
 
       <!-- 订单的item -->
-      <app-scroll class="content"> 
+      <app-scroll class="content scroll"> 
         <ul ref="ul" v-if="show">
             <li   v-for="(item,index) in showList" :key="index" ref="name" >
                 <span class="flag"></span><span class="company">{{item.info.company}}</span>
@@ -60,6 +60,7 @@
 
 <script>
 import { Tab, Tabs,Toast } from 'vant';
+import { log } from 'util';
 export default {
     components:{
         [Tab.name]:Tab,
@@ -99,13 +100,19 @@ export default {
     },
     computed:{
         showList(){
-            if(this.active === 0){
+            this.orderList = this.$store.state.product.allProduct;
+            if(this.active == 0){
                 return this.orderList
             }
             return  this.orderList.filter(item=>{
                 return item.statues == this.active
             })
-            
+        },
+        log(){
+            if(this.active == 1 || this.active == 2 || this.active == 3){
+                console.log("showList是");
+                console.log(this.showList);
+            }
         },
         // 用户余额
         getuserMoney(){
@@ -153,12 +160,19 @@ export default {
 
     },
     created(){
-        this.orderList = this.$store.state.product.allProduct;
+        
+        // 调用仓库的方法获取数据库的数据
+        
+        console.log(this.$store.state.product.allProduct);
+        
     }
 }
 </script>
 
 <style scoped lang="scss">
+.content{
+    bottom: 0;
+}
 .header{
     width:750px;
     height:130px;
