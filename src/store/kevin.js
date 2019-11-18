@@ -10,13 +10,18 @@ export default ({
         isLogin:0,
         username:"",
         isCodeRight:false,
-        isRegiester:false
+        isRegiester:false,
+        isuseful:"-1",
+        foryou:[],
     },
     getters:{
     },
     mutations: {
         upLoadImg(state,value){
             state.img = value;
+        },
+        userful(state,value){
+            state.isuseful = value;
         }
     },
     actions: {
@@ -52,7 +57,11 @@ export default ({
             }else{
                 content.state.isRegiester = false;
             }
-        }
+        },
+        async foryou(content){
+            let result =  await Http.request('GET',API.COMPANY_LIST_API);
+            content.state.foryou = result.data.data;
+        },
         
     },
     modules: {
