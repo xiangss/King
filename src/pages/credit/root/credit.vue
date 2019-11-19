@@ -84,11 +84,12 @@ export default {
     if(this.$store.state.isLogin == 0){
       this.show = true;
       this.$router.push({name:'credit'});
+      this.getInfomation();
     }
     else if(this.$store.state.isLogin == 1){
       this.show = false;
     }
-    this.getInfomation();
+    
   },
 
 }
