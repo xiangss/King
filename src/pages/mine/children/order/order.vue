@@ -128,7 +128,7 @@ export default {
             // 保存产品id的值
             this.item.id = id
             // 获取用户是否已经借钱的标识
-            this.borrowMoney = this.$store.state.borrowMoney;
+            this.borrowMoney = this.$store.state.borrowedMoney;
             console.log(this.borrowMoney);
             if(!this.borrowMoney){
                 Toast('亲！请先去借钱哦');

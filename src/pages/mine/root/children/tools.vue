@@ -9,9 +9,9 @@
         </span>
         <p>反馈意见</p>
       </div>
-      <div class="right">
+      <div class="right" @click="assessAction">
         <span>
-          <img src="../../../../assets/back.png" alt @click="assessAction" />
+          <img src="../../../../assets/back.png" alt />
         </span>
         <p>我的评价</p>
       </div>

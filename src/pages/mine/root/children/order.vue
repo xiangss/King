@@ -37,7 +37,7 @@ export default {
       if (this.$store.state.isLogin == 0) {
         this.$router.push("/login");
       } else {
-        this.$router.push("/mine/collect");
+        this.$router.push("/mine/order");
       }
     },
     orderAction() {

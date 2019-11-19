@@ -1,7 +1,7 @@
 <template>
   <div class="cash">
         <div @click="toMonetAction">
-          <span>{{cash}}</span>
+          <span>{{this.$store.state.userMoney}}</span>
           <p>现金</p>
         </div>
          <div>
@@ -22,11 +22,7 @@
 <script>
 
 export default {
-  data(){
-    return {
-      cash:this.$store.state.userMoney
-    }
-  },
+
   methods:{
     toMonetAction(){
       this.$router.push('/home');

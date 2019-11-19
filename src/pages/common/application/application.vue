@@ -124,7 +124,13 @@ export default {
         },
         // 点击收藏
         collect(cId){
-            console.log(888);
+            // console.log(888);
+            const flag = this.$store.state.isLogin;
+            // const flag = true;
+            if(!flag){
+                Toast('亲，先去登录借钱哦');
+                return
+            }
             
                 Http.post(api.ADD_ORDER_API,{cId,statues:3})
                 .then((result)=>{
@@ -151,8 +157,8 @@ export default {
         // 提交申请
         applicationAction(cId,status){
             // 根据标识判断有没有登录
-            // const flag = this.$store.state.isLogin;
-            const flag = true;
+            const flag = this.$store.state.isLogin;
+            // const flag = true;
             if(!flag){
                 Toast('亲，先去登录借钱哦');
                 return

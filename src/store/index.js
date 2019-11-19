@@ -9,12 +9,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLogin:1,
-    userMoney:80000,
-    borrowMoney:true,
+    userMoney:0,
+    // borrowMoney:false,
     allmoney: '6000',        //总额度
     borrowed: 0,        //已借的钱
-    borrowedMoney: false,    //是否借了钱
-    userMoney: 0,       //账户余额
+    borrowedMoney: true,    //是否借了钱
+    // userMoney: 0,       //账户余额
   },
   mutations: {
     setMoney(state,value){
