@@ -1,5 +1,5 @@
 <template>
-  <div class="advertise">
+  <div class="advertise" @click="pushAction">
     <div class="img">
       <img src="../../../../assets/pic_zn.png" alt />
       <span>智能助手为你找到一款产品</span>
@@ -35,6 +35,9 @@ export default {
     },
     payAction() {
       this.$router.push("/credit");
+    },
+    pushAction(){
+      this.$router.push(`/borrow/application/010`);
     }
   }
 };

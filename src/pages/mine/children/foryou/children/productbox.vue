@@ -1,5 +1,5 @@
 <template>
-  <div class="productbox">
+  <div class="productbox" @click="pushAction">
     <span class="tip">可复借</span>
 
     <div class="title">
@@ -22,9 +22,17 @@
 </template>
 
 <script>
+import { log } from 'util'
 export default {
     props:{
         data:Object
+    },
+    methods:{
+      pushAction(){
+        console.log(this.data.cId);
+        this.$router.push(`/borrow/application/${this.data.cId}`);
+        
+      }
     }
 };
 </script>
