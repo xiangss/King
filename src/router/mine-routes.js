@@ -46,5 +46,20 @@ export default {
       path: 'feedback',
       component: ()=>import('../pages/mine/children/feedback/feedback'),
     },
+    {
+      name:'askfor',
+      path: 'askfor',
+      component: ()=>import('../pages/mine/children/askfor/askfor'),
+    },
+    {
+      name:'onlineServer',
+      path: 'onlineServer',
+      component: ()=>import('../pages/mine/children/onlineServer/onlineServer'),
+    },
+    {
+      name:'foryou',
+      path: 'foryou',
+      component: ()=>import('../pages/mine/children/foryou/foryou'),
+    },
   ]
 }

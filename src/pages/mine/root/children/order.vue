@@ -8,7 +8,7 @@
     </div>
     <div @click="colletionAction">
       <p>
-        <img src="../../../../assets/icon_sc.png" alt />
+        <img src="../../../../assets/icon_sc_second.png" alt />
       </p>
       <span>收藏</span>
     </div>
@@ -34,13 +34,25 @@ export default {
       this.$router.push("/borrow");
     },
     colletionAction() {
-      this.$router.push("/home");
+      if (this.$store.state.isLogin == 0) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/mine/collect");
+      }
     },
     orderAction() {
-      this.$router.push("/home");
+      if (this.$store.state.isLogin == 0) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/mine/order");
+      }
     },
     payAction() {
-      this.$router.push("/credit");
+      if (this.$store.state.isLogin == 0) {
+        this.$router.push("/login");
+      } else {
+        this.$router.push("/mine/repayment");
+      }
     }
   }
 };
@@ -60,12 +72,11 @@ export default {
   div {
     width: 25%;
     p {
-        margin: 20px auto;
+      margin: 20px auto;
       height: 44px;
       width: 44px;
-      
+
       img {
-        
         height: 100%;
         width: 100%;
       }

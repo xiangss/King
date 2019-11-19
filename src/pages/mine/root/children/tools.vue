@@ -15,7 +15,7 @@
         </span>
         <p>我的评价</p>
       </div>
-      <div class="left">
+      <div class="left"  @click="toAskforAction">
         <span>
           <img src="../../../../assets/iocn_jk.png" alt />
         </span>
@@ -25,7 +25,7 @@
         <span>
           <img src="../../../../assets/icon_hk.png" alt />
         </span>
-        <p>还款问题</p>
+        <p>为您推荐</p>
       </div>
     </div>
   </div>
@@ -38,7 +38,10 @@ export default {
       this.$router.push("/mine/feedback");
     },
     toMarkAction() {
-      this.$router.push("/credit");
+      this.$router.push("/mine/foryou");
+    },
+    toAskforAction(){
+      this.$router.push("/mine/askfor");
     }
   }
 };

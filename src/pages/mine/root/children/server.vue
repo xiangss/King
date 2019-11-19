@@ -6,14 +6,18 @@
     </div>
     <div class="info">
         <h1>在线客服竭诚为你服务</h1>
-        <span>点我咨询</span>
+        <span @click="serverAction">点我咨询</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+    methods:{
+        serverAction(){
+            this.$router.push('/mine/onlineServer');
+        }
+    }
 }
 </script>
 
