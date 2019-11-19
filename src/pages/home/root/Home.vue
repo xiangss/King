@@ -46,7 +46,7 @@
 
 
 
-        <!-- //登录后首页-------------------------------- -->
+        <!-- //登录后首页 -->
         <div class="loginedHome" v-if="isLogin">
                 <div class="head1">
                     <div class="location">
@@ -188,7 +188,7 @@ export default {
       this.$router.push(`/home/quota`)  
     },
     borrowAction(){
-      this.$router.push(`/mine/login`)  
+      this.$router.push(`/login`)  
     }
 
 
