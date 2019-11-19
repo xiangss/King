@@ -21,9 +21,9 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  width: 100%;
-  height: 100%;
+#app{
+ height:100px;
+
 }
 .page {
   position: absolute;
@@ -31,7 +31,14 @@ export default {
   left: 0;
   bottom: 98px;
   width: 100%;
-  .content {
+  .subpage{
+     z-index: 10;
+      bottom: 0;
+      top:0;
+      background-color: white;
+     
+  }
+  .content{
     position: absolute;
     top: 0px;
     left: 0;
