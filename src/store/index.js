@@ -68,6 +68,10 @@ export default new Vuex.Store({
       
 
 
+    // 评论成功增加20体验金
+    addMoney(state){
+      state.userMoney = state.userMoney + 20;
+    }
   },
 
   getters : {

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrap">
+  <div class="page-wrap page">
       <div class="header border-bottom">
           <div class="back" @click="back"><img src="../../../../assets/icon_fhs.png" alt=""></div>
           <div class="title">评价拿奖励</div>
@@ -17,18 +17,20 @@
                   <img src="../../../../assets/logos.png" alt="">
                   <span class="company">{{item.info.company}}</span>
                   <span class="rate">产品的利润:<span class="rates">{{item.info.annRate}}</span></span>
-                  <div class="btn"><span>我要评价</span></div>
+                  <div class="btn" @click="toWrite(item._id,item)"><span v-if="!item.__v">我要评价</span><span class="pingjia" v-if="item.__v">已评价</span></div>
               </li>
           </ul>
       </app-scroll>
 
-    
-     
+    <transition enter-active-class="slideInRight" leave-active-class="slideOutRight">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 import { Toast } from 'vant';
+import { log } from 'util';
 export default {
     components:{
         [Toast.name]:Toast
@@ -48,6 +50,15 @@ export default {
         back(){
             this.$router.back();
         },
+        // 点击评价
+        toWrite(id,item){
+            // 在仓库中修改点击item的__v的值
+            this.$store.commit('product/setv',id)
+
+            // 跳到写评价的页面
+            this.$router.push('/mine/assess/write')
+
+        }
     },
     created(){
         // 获取申请过的产品
@@ -166,6 +177,10 @@ export default {
                     font-weight:400;
                     color:rgba(248,152,78,1);
                     line-height:25px;
+                }
+                .pingjia{
+                    color:rgba(153,153,153,1);
+                    text-decoration:line-through;
                 }
             }
         }

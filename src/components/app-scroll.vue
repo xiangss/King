@@ -1,6 +1,6 @@
 <template>
 <div class="app-scroll" ref="scroll">
-  <div class="scoll-wrap">
+  <div class="scroll-wrap">
     <slot/>
   </div>
 </div>

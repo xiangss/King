@@ -11,7 +11,7 @@
       </div>
       <div class="right">
         <span>
-          <img src="../../../../assets/back.png" alt />
+          <img src="../../../../assets/back.png" alt @click="assessAction" />
         </span>
         <p>我的评价</p>
       </div>
@@ -42,6 +42,9 @@ export default {
     },
     toAskforAction(){
       this.$router.push("/mine/askfor");
+    },
+    assessAction(){
+      this.$router.push("/mine/assess");
     }
   }
 };
