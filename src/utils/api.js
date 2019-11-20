@@ -49,6 +49,7 @@ const ONLINE_API = '/api/serve/online'
 
 
 
+
 export default{
     COMPANY_LIST_API,
     COMPANY_DETAIL_API,
