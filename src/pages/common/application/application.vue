@@ -99,7 +99,8 @@ export default {
         return{
             picPath:"../../../assets/icon_scs.png",
             picFlag:false,
-            status:1
+            status:1,
+            userinfo:''
         }
     },
     computed:{
@@ -174,7 +175,6 @@ export default {
             })
             .catch((error)=>{
                 Toast('申请失败')
-                console.log(1);
                 console.log(error);
             })
         }
@@ -182,7 +182,9 @@ export default {
     },
     created(){
         this.request();
-               
+        if(localStorage.getItem('credit')){
+            this.userinfo = this.$store.dispatch('requestUserInfo');
+        }
     },  
         
 }

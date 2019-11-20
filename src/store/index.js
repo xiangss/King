@@ -2,8 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import product from './product'
 import credit from './credit'
+import Http from '../utils/Http'
+import api from '../utils/api'
 
 import kevin from './kevin'
+import { request } from 'http'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -25,6 +28,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    // 获取登录后的的用户信息
+    async requestUserInfo(context){
+      const {data:result} = await Http.get(api.IDENTITY_API);
+
+      if(result.code == 0){
+        return result
+      }else{
+        throw new Error(result.message);
+      }
+    }
   },
   modules: {
     product,
