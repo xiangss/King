@@ -11,7 +11,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin:1,
+    isLogin:0,
     userMoney:0,
     // borrowMoney:false,
     allmoney: '6000',        //总额度

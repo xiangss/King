@@ -147,6 +147,8 @@ export default {
                 background:rgba(248,152,78,1);
                 border-radius:25px;
                 text-align: center;
+                // margin-right: 20px;
+                right: 20px;
                 position: relative;
                 .btn{
                     position: absolute;

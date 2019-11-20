@@ -49,20 +49,20 @@
                   <span class="right" >已完成</span>
               </li>
               <li class="border-bottom">
-                  <span class="left">手机号</span>
-                  <span class="right" >18270760103</span>
+                  <span class="left">信用分</span>
+                  <span class="right" >{{userinfo.data.mark}}</span>
               </li>
               <li class="border-bottom">
                   <span class="left">姓名</span>
-                  <span class="right" >张三</span>
+                  <span class="right" >{{userinfo.data.cname}}</span>
               </li>
               <li class="border-bottom">
                   <span class="left">身份证</span>
-                  <span class="right" >360727199708250015</span>
+                  <span class="right" >{{userinfo.data.identityCardNumber}}</span>
               </li>
               <li class="border-bottom">
                   <span class="left">职业</span>
-                  <span class="right" >工薪族</span>
+                  <span class="right" >{{userinfo.data.job}}</span>
               </li>
           </ul>
       </div>
@@ -93,14 +93,25 @@ export default {
     },
     props:{
         id:String,
-        datas:Object
+        // datas:Object
     },
     data(){
         return{
             picPath:"../../../assets/icon_scs.png",
             picFlag:false,
             status:1,
-            userinfo:''
+            userinfo:{
+                data:{
+                    mark:0,
+                    cname:'姓名',
+                    identityCardNumber:'360727199708250015',
+                    job:'工作'
+                }
+            },
+            datas:{
+                company:'公司',
+
+            }
         }
     },
     computed:{
@@ -117,7 +128,17 @@ export default {
         async request(){
             const result = await this.$store.dispatch('product/requestCompanyDetail',{cId:this.id});
             this.datas = result.data;
-            console.log(this.datas);
+            // console.log(this.datas);
+        },
+        // 获取用户的信息
+        async requestInfo(){
+                if(localStorage.getItem('credit')){
+                console.log(11111111111111111111);
+                this.userinfo = await this.$store.dispatch('requestUserInfo');
+                console.log(this.userinfo.data);
+            }else{
+                Toast('亲，你还没有填写用户信息哦')
+            }
         },
          // 点击返回
         back(){
@@ -188,9 +209,9 @@ export default {
     },
     created(){
         this.request();
-        if(localStorage.getItem('credit')){
-            this.userinfo = this.$store.dispatch('requestUserInfo');
-        }
+        this.requestInfo();
+        
+        
     },  
         
 }
@@ -214,13 +235,14 @@ export default {
     }
     .title{
         margin: 66px auto;
-        width:200px;
+        width:250px;
         height:30px;
         font-size:32px;
         font-family:PingFang SC;
         font-weight:500;
         color:rgba(255,255,255,1);
         line-height:25px;
+        text-align: center;
     }
 }
 .detail{
