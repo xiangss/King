@@ -8,8 +8,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin:1,
+    isLogin:0,
     userMoney:0,
+    blackList: [360311199511192030, 360311199511192032, 360311199511192033, 360311199511192030, 360311199511192030, 360311199511192030],
+     black:0,                  //是否进入黑名单
     // borrowMoney:false,
     allmoney: '6000',        //总额度
     borrowed: 0,        //已借的钱
@@ -41,6 +43,10 @@ export default new Vuex.Store({
     setHaveBorrow(state, value) {
       state.borrowedMoney = value;
     },
+    // 是否进入黑名单
+     isBlackList(state, value) {
+       state.black= value;
+    },
   
   
   
@@ -63,7 +69,7 @@ export default new Vuex.Store({
   
       //账户余额   value
       setMyMoney(state, value) {
-        state.userMoney = state.borrowed - value
+        state.userMoney = state.userMoney - value
       },
       
 
@@ -81,6 +87,19 @@ export default new Vuex.Store({
   },
 
   actions: {
+    async requestUserInfo(context) {
+      const { data: result } = await Http.get(api.IDENTITY_API);
+
+      if (result.code == 0) {
+        console.log(result);
+ 
+         context.commit('', result);
+        
+        return result
+      } else {
+        throw new Error(result.message);
+      }
+    }
   },
   modules: {
     product,

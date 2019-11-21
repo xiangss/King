@@ -37,7 +37,7 @@
                             </span>
                         </li>
                     </ul> 
-                    <button class="btn1">查一查是否上黑名单</button> 
+                    <button class="btn1" @click="borrwqAction">查一查是否上黑名单</button> 
                     
 
                 
@@ -52,7 +52,7 @@
             <div class="bg1">
                 <img src="../../../../assets/pic_qs.png" alt="">
             </div>
-            <input type="text" ref="ipt2"   class="ipt2" placeholder="还款金额">
+            <input type="text" ref="ipt2"   class="ipt2" placeholder='输入还款金额'>
         </div>
     
     
@@ -73,9 +73,9 @@ export default {
     },
   data(){
               return{
-              message2:'张三',
-              message3:'360***********2226',
-              message4:'15070772779',
+              message2:'',
+              message3:'',
+              message4:'',
               noBorrow:1,
               hasborrowed:0,
               
@@ -92,23 +92,31 @@ export default {
                 }
             
     },
+    created(){
+      this.message2=this.$store.state.credit.userinfolist&&this.$store.state.credit.userinfolist.cname;
+      this.message3=this.$store.state.credit.userinfolist&&this.$store.state.credit.userinfolist.identityCardNumber;
+      this.message4=this.$store.state.credit.userinfolist&&this.$store.state.credit.userinfolist.ftel;
+      
+  },
 
   
    methods:{
-
+            borrwqAction() {
+               this.$router.push(`/home/check`);
+             },     
             borrwsAction(){
                         this.$router.push(`/home/quota`)  
                     },
         
             sureAction(){
-                
+                this.litter=this.$store.state.borrowed;
                 var money3=parseInt(this.$refs.ipt2.value);
                 console.log(money3);
                 console.log(this.$store.state.borrowed)
-                if(money3<=this.$store.state.borrowed){
+                if(money3<=this.$store.state.borrowed&&money3>0){
                         if(money3<=this.$store.state.userMoney)
                         //修改还款后仓库剩余借的钱
-                        {this.$store.commit(' setShenYu',money3); 
+                        {this.$store.commit('setShenYu',money3); 
                         //修改还款后仓库账户余额
                         this.$store.commit('setMyMoney',money3);
                             
@@ -116,12 +124,12 @@ export default {
                         console.log(this.$store.state.borrowed);
                         console.log(this.$store.getters.canBorrow);
                         
-                        
-                        this.$refs.ipt1.value='';
+                        this.$refs.ipt2.value='';
+                        var litt=this.$store.state.borrowed;
 
                         Toast.success('还钱成功');
                         setTimeout(() => {
-                        Toast.success('剩余待还');  
+                        Toast.success('剩余待还:'+litt);  
                         },3000)
                         }
 
@@ -130,8 +138,11 @@ export default {
                         }
 
                 }
-                
-                else{
+                else if(money3==0){
+                    Toast.fail('金额不能为0哦   ')
+                }
+                else if(money3>this.$store.state.borrowed)
+                {
                     
                     Toast.fail('还太多了哦');
                 }

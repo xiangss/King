@@ -28,6 +28,11 @@ export default {
       ]
     },
     {
+      name: 'check',
+      path: 'check',
+      component: () => import('../pages/home/children/check/check'),
+    },
+    {
       name:'application',
       path: 'application/:id',
       component: ()=>import('../pages/common/application/application'),

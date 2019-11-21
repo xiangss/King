@@ -9,7 +9,9 @@
                 </div>
                 
                 <div class="steps">
-                <van-notice-bar  class="adve" text="桂林 葛女士（尾号6952）获得额度45000元" left-icon="volume-o"/>
+                <van-notice-bar  :scrollable="true"  class="adve"  line-height='25px'
+                 text="桂林 葛女士（尾号6952）获得额度45000元" left-icon="volume-o">
+                 </van-notice-bar>
                 <!-- <van-notice-bartext v-text="message" class="adve" left-icon="volume-o"/> -->
                 <h2 v-text="message1" class="money"></h2>
                 <div class="prog">
@@ -48,6 +50,7 @@
 
         <!-- //登录后首页 -->
         <div class="loginedHome" v-if="isLogin">
+                 <router-view></router-view>
                 <div class="head1">
                     <div class="location">
                     <!-- <van-area :area-list="areaList" :columns-num="2" title="标题" />
@@ -64,11 +67,11 @@
                         </dd>
                     </dl>
                     <ul class="work1">
-                    <li>
-                        <span>
+                    <li >
+                        <span @click="borrwqAction">
                             <img src="../../../assets/icon_hmd.png" alt=""> 
                         </span>
-                        <span>
+                        <span @click="borrwqAction" >
                             黑名单检测
                         </span>
                     </li> 
@@ -104,7 +107,7 @@
                         <span>
                             <img src="../../../assets/icon_hmdjc.png" alt=""> 
                         </span>
-                        <span>
+                        <span >
                             黑名单检测
                         </span>
                     </li> 
@@ -159,13 +162,18 @@
 import { Area } from "vant";
 import { Icon } from "vant";
 import { NoticeBar } from "vant";
+import { Popup } from 'vant';
+import { Cell, CellGroup } from 'vant'
+
 import Start from '../children/start/Start'
 export default {
   components: {
     [Area.name]: Area,
     [Icon.name]: Icon,
-    NoticeBar,
-    Start
+    [NoticeBar.name]: NoticeBar,
+    Start,
+    [Popup.name]: Popup,
+     [Cell.name]: Cell,
   },
 
   data() {
@@ -175,7 +183,11 @@ export default {
       message3: "无需手续费，咨询费不向学生提供服务",
       message4: "你还需要什么帮助尽管来找我吧",
       isLogin: 0,
-      hasLogin: 1
+      hasLogin: 1,
+       show: true,
+       round:true,
+       closeable:true,
+      // close-on-click-overlay:false,
     };
   },
   mounted() {
@@ -183,9 +195,16 @@ export default {
     this.hasLogin = !this.$store.state.isLogin;
     console.log(this.hasLogin);
   },
+  
   methods: {
+    showPopup() {
+      this.show = true;
+    },
     borrwAction() {
       this.$router.push(`/home/quota`);
+    },
+    borrwqAction() {
+      this.$router.push(`/home/check`);
     },
     borrowAction() {
       this.$router.push(`/login`);
@@ -365,6 +384,7 @@ export default {
         border-radius: 12px;
         width: 470px;
         height: 60px;
+        text-indent: 29px;
       }
     }
     .robot {
@@ -420,6 +440,7 @@ export default {
             display: flex;
             text-align: center;
             justify-content: center;
+            font-family:PingFang SC;
             &:nth-of-type(1) {
               text-align: center;
               img {
