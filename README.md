@@ -1,6 +1,6 @@
-# my-app
+# 王者闪贷
 
-## Project setup
+## 项目结构
 ```
 npm install
 ```
