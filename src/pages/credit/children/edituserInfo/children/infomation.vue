@@ -22,31 +22,31 @@
 
   <van-popup class="showxueli" v-model="showxueli" closeable>
     <div class="callmain">
-      <input type="text" v-model="xueli">
+      <input type="text" v-model="xueli" autofocus="autofocus">
       <van-button @click="xueliAction"  class="xuelibtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="showjob" v-model="showjob" closeable>
     <div class="callmain">
-      <input type="text" v-model="job">
+      <input type="text" v-model="job" autofocus="autofocus">
       <van-button @click="jobAction"  class="jobbtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="showsalar" v-model="showsalar" closeable>
     <div class="callmain">
-      <input type="text" v-model="salar">
+      <input type="text" v-model="salar" autofocus="autofocus">
       <van-button @click="salarAction"  class="salarbtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="showmoney" v-model="showmoney" closeable>
     <div class="callmain">
-      <input type="text" v-model="money">
+      <input type="text" v-model="money" autofocus="autofocus">
       <van-button @click="moneyAction"  class="moneybtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="showjob" v-model="showjobname" closeable>
     <div class="callmain">
-      <input type="text" v-model="jobName">
+      <input type="text" v-model="jobName" autofocus="autofocus">
       <van-button @click="jobNameAction"  class="jobbtn" type="info">确定</van-button>
     </div>
   </van-popup>

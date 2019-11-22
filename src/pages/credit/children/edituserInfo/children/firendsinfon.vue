@@ -13,19 +13,19 @@
 
   <van-popup class="firends" v-model="fnameflag" closeable>
     <div class="callmain">
-      <input type="text" v-model="fname">
+      <input type="text" v-model="fname" autofocus="autofocus">
       <van-button @click="fnameAction"  class="firendsbtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="firends" v-model="ftelflag" closeable>
     <div class="callmain">
-      <input type="text" v-model="ftel">
+      <input type="text" v-model="ftel" autofocus="autofocus">
       <van-button @click="ftelAction"  class="firendsbtn" type="info">确定</van-button>
     </div>
   </van-popup>
   <van-popup class="firends" v-model="guanxiflag" closeable>
     <div class="callmain">
-      <input type="text" v-model="guanxi">
+      <input type="text" v-model="guanxi" autofocus="autofocus">
       <van-button @click="guanxiAction"  class="firendsbtn" type="info">确定</van-button>
     </div>
   </van-popup>

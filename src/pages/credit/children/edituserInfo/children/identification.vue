@@ -24,13 +24,13 @@
 
 <van-popup class="nameflag" v-model="nameflag" closeable>
   <div class="callmain">
-    <input type="text" v-model="name">
+    <input type="text" v-model="name" autofocus="autofocus">
     <van-button @click="namebtn" class="namebtn" type="info">确定</van-button>
   </div>
 </van-popup>
 <van-popup class="idflag" v-model="idflag" closeable>
   <div class="callmain">
-    <input type="text" v-model="idinfo">
+    <input type="text" v-model="idinfo" autofocus="autofocus">
     <van-button @click="idbtn" class="idbtn" type="info">确定</van-button>
   </div>
 </van-popup>
