@@ -77,12 +77,35 @@ export default {
       this.$router.push(`/home/quota/lend`)  
     },
     checkAction(){
-        if(this.$store.state.forbid=1){
-        setTimeout(() => {
-            
-            Toast.fail('你已进入黑名单');  
-        }, 500);
+        let flag = 0;
+        var credit=this.$store.state.credit.mark;
+        for(var i=0;i<this.$store.state.blackList.length;i++){
+           if(this.$store.state.credit.userinfolist.identityCardNumber==this.$store.state.blackList.length[i]){
+             credit=0;
+             flag = 1;
+              this.$store.commit('isBlackList',1); 
+               setTimeout(() => {
+                
+                Toast.fail('你已进入黑名单');  
+            }, 500);
+            return;
+           }else{
+              flag = 0;
+           }
+
+        };
+        if(flag == 0){
+            setTimeout(() => {
+                
+                Toast.fail('您未进黑名单');  
+            }, 500);
         }
+        // if(this.$store.state.forbid=1){
+        //     setTimeout(() => {
+                
+        //         Toast.fail('你已进入黑名单');  
+        //     }, 500);
+        // }
     }
 
   }

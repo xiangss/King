@@ -57,6 +57,7 @@ export default {
       await this.$store.dispatch('credit/deleteInfomation');
       if(this.$store.state.credit.code == 0){
         Toast('删除成功！');
+        this.$store.commit('credit/changeActive',-1);
         setTimeout(()=>{
           this.$router.push({name:'credit'});
         },2000);

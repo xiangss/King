@@ -3,13 +3,12 @@ import Http from '../utils/Http'
 
 const state = {
   active: -1,
-  mark:600,
+  mark:0,
   code:'',
   saveinfolist:{
 
   },
   userinfolist:{
-    identityCardNumber:360311199511192032
   }
 }
 const getters = {

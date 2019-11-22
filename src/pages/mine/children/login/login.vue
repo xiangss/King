@@ -30,7 +30,7 @@
         <input type="checkbox" v-model="readDoc" />我已阅读并同意
         <span>《用户服务条款》</span>
       </p>
-      <p class="btn" @click="LoginAction">登陆</p>
+      <p class="btn" @click="LoginAction"  ref="loginBtn" >登陆</p>
     </div>
     <!-- 密码登陆 -->
     <div v-else class="loginBox">
@@ -61,6 +61,7 @@ export default {
       readDoc: false,
       value: "",
       password: "",
+      timer:null
     };
   },
   computed: {
@@ -73,6 +74,25 @@ export default {
     },
 
   },
+  watch:{
+    slider(newVal,oldVal){
+      if(newVal==2){
+        clearInterval(this.timer);
+      }
+      
+    },
+
+    readDoc(newVal){
+      if(newVal){
+        console.log(this.$refs);
+        this.$refs.loginBtn.style.opacity = 1;
+      }else{
+        this.$refs.loginBtn.style.opacity = 0.5;
+
+      }
+    }
+    
+  },
   components: {
     Icon,
     Dialog,
@@ -82,6 +102,7 @@ export default {
   methods: {
     //返回键
     backAction() {
+      clearInterval(this.timer);
       this.$router.back();
     },
     //滑动
@@ -90,6 +111,9 @@ export default {
     },
     //获取验证码
     codeAction() {
+      console.log(this.$refs);
+      
+      clearInterval(this.timer);
       if (!this.phone) {
         // console.log("请输入手机号码");
         Dialog({
@@ -112,18 +136,19 @@ export default {
       this.$refs.code.innerText = "60s";
       let n = 59;
       let _this = this;
-      clearInterval(timer);
-      let timer = setInterval(function() {
+      clearInterval(this.timer);
+      this.timer = setInterval(function() {
         _this.$refs.code.innerText = `${n--}s`;
         if (n === 0) {
           _this.$refs.code.innerText = "点击重新获取";
-          clearInterval(timer);
+          clearInterval(this.timer);
         }
       }, 1000);
     },
 
     //登陆
     async LoginAction() {
+      
       if (this.type === "type") {
         if (!this.readDoc) {
           Dialog({
@@ -148,6 +173,7 @@ export default {
         value: this.value
       });
       if (this.$store.state.kevin.code == 0) {
+        clearInterval(this.timer);
         this.$store.commit('setisLogin',1);
         this.$store.state.kevin.isLogin = 1;
         this.$router.push("/mine");
@@ -163,6 +189,7 @@ export default {
     //找回密码
 
     findPasswordAction() {
+      clearInterval(this.timer);
       this.$refs.forgetPass.show =true;
     },
 
