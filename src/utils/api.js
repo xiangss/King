@@ -1,5 +1,5 @@
 // 管理api
-export const HOST = 'http://localhost:8080';
+export const HOST = 'http://localhost:8081';
 
 // 产品公司列表
 const COMPANY_LIST_API = '/api/goods/all';
@@ -44,6 +44,7 @@ const HANDLE_ORDER_API = '/api/order/handle'
 
 // 在线客服
 const ONLINE_API = '/api/serve/online'
+
 
 
 

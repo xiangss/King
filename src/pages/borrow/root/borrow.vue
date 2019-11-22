@@ -9,15 +9,15 @@
           </div>
           <div class="li">
               <img src="../../../assets/borrow-2.png" alt="">
-              <span>新品上市</span>
+              <span>会员专享</span>
           </div>
           <div class="li">
               <img src="../../../assets/borrow-3.png" alt="">
-              <span>新品上市</span>
+              <span>快速审核</span>
           </div>
           <div class="li">
               <img src="../../../assets/borrow-4.png" alt="">
-              <span>新品上市</span>
+              <span>超长分期</span>
           </div>
       </div>
 
