@@ -33,14 +33,27 @@ export default {
           }
   },
   mounted(){
-      var credit = JSON.parse(localStorage.getItem('credit'));
+      // var credit = JSON.parse(localStorage.getItem('credit'));
      
-      credit=600;
-       var total = parseInt((credit) / 100) * 1500;
+      
+      var credit=this.$store.state.credit.mark;
+        console.log(this.$store.state.credit.mark);
+        for(var i=0;i<this.$store.state.blackList.length;i++){
+           if(this.$store.state.credit.userinfolist.identityCardNumber==this.$store.state.blackList.length[i]){
+             credit=0;
+              this.$store.commit('isBlackList',1); 
+           }
+
+        };
+         
+        console.log(credit);
+        
+       var total = parseInt((credit) / 100) * 15000;
           this.$store.commit('setAllMoney',total); 
           console.log(this.$store.state.allmoney);
             this.message2= this.$store.state.allmoney;
   },
+  
   updated(){
      this.message1=this.$store.getters.canBorrow;
 
