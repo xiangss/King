@@ -39,7 +39,7 @@ export default {
       this.allshow = false;
     }
   },
-  mounted(){
+  created(){
     if(!(sessionStorage.getItem('allshow'))){
       this.allshow = true;
       sessionStorage.setItem('allshow',true);
@@ -59,6 +59,9 @@ export default {
       localStorage.setItem('show',true);
     }else{
       this.show = false;
+      setTimeout(()=>{
+        this.allshow = false;
+      },2000)
     }
   }
 }
