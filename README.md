@@ -1,13 +1,13 @@
 # 王者闪贷
 
-## 项目结构
+## 项目成员
 ```
-npm install
+黎海明  赵文蕾  王志源   廖翔
 ```
 
-### Compiles and hot-reloads for development
+### 项目结构
 ```
-npm run serve
+四大模块：首页---产品---借钱---信用---我的
 ```
 
 ### Compiles and minifies for production
