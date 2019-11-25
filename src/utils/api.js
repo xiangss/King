@@ -1,5 +1,5 @@
 // 管理api
-export const HOST = 'http://localhost:8080';
+export const HOST = 'http://134.175.16.225:3000';
 
 // 产品公司列表
 const COMPANY_LIST_API = '/api/goods/all';

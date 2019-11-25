@@ -80,7 +80,7 @@ export default {
         let flag = 0;
         var credit=this.$store.state.credit.mark;
         for(var i=0;i<this.$store.state.blackList.length;i++){
-           if(this.$store.state.credit.userinfolist.identityCardNumber==this.$store.state.blackList.length[i]){
+           if(this.$store.state.credit.userinfolist.identityCardNumber==this.$store.state.blackList[i]){
              credit=0;
              flag = 1;
               this.$store.commit('isBlackList',1); 
